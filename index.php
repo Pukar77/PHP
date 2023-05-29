@@ -15,7 +15,7 @@ if (isset($_POST['Name'])) {
     $name = $_POST['Name'];
     $age = $_POST['age'];
     $college = $_POST['college'];
-    $password = $_POST['password'];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO `college form` (`Name`, `age`, `college`, `password`, `Date`) VALUES ('$name', '$age', '$college', '$password', current_timestamp())";
     // echo $sql;
