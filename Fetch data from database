@@ -1,0 +1,30 @@
+   <?php
+include "dbput.php";
+$sql = "select * from books";
+$stmt = $conn->prepare($sql);        //constant code
+$stmt->execute();                   //constant code       //yo 3 ota matra garyo bhane database ma insert hunxa data
+$result = $stmt->get_result();      //constant code
+
+
+if (mysqli_num_rows($result) > 0) {      //constant code
+while($result1 = $result->fetch_assoc()){    //constant code
+    $name = $result1["name"];
+    $author = $result1["author"];
+    $price = $result1["price"];
+    $photo = $result1["photo"];
+    ?>
+    <div class="card" style="width: 18rem;">
+  <img src="<?php echo $photo ?>" class="card-img-top card_img" alt="images/book1.jpg">
+  <div class="card-body">
+    <h2><?php echo $name?></h2>
+    <h4><?php echo $author ?></h4>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    
+    </div>
+  <button class="btn btn-success">Order Now</button>
+</div>
+<?php
+
+}
+}
+ ?>
