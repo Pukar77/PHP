@@ -2,7 +2,7 @@
 include "dbput.php";
 $sql = "select * from books";
 $stmt = $conn->prepare($sql);        //constant code
-$stmt->execute();                   //constant code       //yo 3 ota matra garyo bhane database ma insert hunxa data
+$stmt->execute();                   //constant code      
 $result = $stmt->get_result();      //constant code
 
 
