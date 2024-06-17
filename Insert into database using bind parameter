@@ -1,0 +1,21 @@
+<?php
+include"../connection.php";
+
+if(isset($_POST['name'])   && isset($_POST['password'])){
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+
+    $sql = $conn->prepare ("insert into chiyaguff (`name`, `password`) values (?,?)");
+
+
+    $sql->bind_param("ss",$name,$password);
+
+    if ($sql->execute()) {
+        // echo "Successfully inserted";
+    } else {
+        echo "ERROR: " . $sql->error;
+    }
+      $sql->close();
+      $conn->close();
+}
+?>
