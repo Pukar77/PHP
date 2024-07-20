@@ -1,6 +1,6 @@
-   <?php
-include "dbput.php";
-$sql = "select * from books";
+<?php
+include "connection.php";
+$sql = "select * from ecommerce";
 $stmt = $conn->prepare($sql);        //constant code
 $stmt->execute();                   //constant code      
 $result = $stmt->get_result();      //constant code
@@ -9,22 +9,29 @@ $result = $stmt->get_result();      //constant code
 if (mysqli_num_rows($result) > 0) {      //constant code
 while($result1 = $result->fetch_assoc()){    //constant code
     $name = $result1["name"];
-    $author = $result1["author"];
+    $image = $result1["image"];
     $price = $result1["price"];
-    $photo = $result1["photo"];
-    ?>
-    <div class="card" style="width: 18rem;">
-  <img src="<?php echo $photo ?>" class="card-img-top card_img" alt="images/book1.jpg">
+    $description = $result1["description"];
+    $id = $result1["id"];
+
+    echo'  <div class="card" style="width: 18rem;">
+  <img src="'.$image.'" class="card-img-top card_img" alt="images/book1.jpg">
   <div class="card-body">
-    <h2><?php echo $name?></h2>
-    <h4><?php echo $author ?></h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <h2> '.$name.'</h2>
+    <h4> '.$price.'</h4>
+    <p class="card-text"> '.$description.' .</p>
     
     </div>
   <button class="btn btn-success">Order Now</button>
 </div>
-<?php
+';
+}
+}
+    ?>
+  
+<style>
+   
+</style>
 
-}
-}
- ?>
+
+
