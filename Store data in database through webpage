@@ -1,13 +1,18 @@
-if (isset($_POST['Name'])) {
-$Name=$_POST['Name'];
-$Email=$_POST['Email'];
-$Password=$_POST['Password'];
-$sql="INSERT INTO `pukar1` (`Name`, `Email`, `Password`) VALUES ('$Name', '$Email', '$password')";
-if ($con->query($sql) == true) {
-  // echo "Successfully inserted";
-} else {
-  echo "ERROR: $sql <br>" . $con->error;
-}
 
-$con->close();
+if(isset($_POST["username"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $sql = "insert into `login`(`username`,`password`) values('$username','$password')";
+
+    $result = mysqli_query($conn,$sql);
+
+    if($result== true){
+        echo"Data insertion succesfull";
+    }
+
+    else{
+        echo"Failed to insert data";
+    }
+    $conn->close();
 }
