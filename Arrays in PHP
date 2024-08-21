@@ -1,0 +1,72 @@
+<?php
+
+// indexed array
+$arr = array("index0","index1","index2");
+$length = count($arr);
+for($n=0;$n<$length;$n++){
+    echo"$arr[$n]";
+}
+//output = index0index1index2
+
+
+// //associative array
+$favbike = array("Pukar"=>"xpulse","Atul"=>"Dio","Bisan"=>"bullet");
+
+echo $favbike["Pukar"];
+echo $favbike["Atul"];
+echo $favbike["Bisan"];
+
+// //output = xpulseDiobullet
+
+
+
+//multidimensional array
+$multiarr = array(
+    array(2,3,4,5),
+    array(3,4,5,6),
+    array(6,7,8,9)
+    );
+    
+    echo var_dump($multiarr);
+    
+    
+    //output
+//     array(3) {
+//   [0]=>
+//   array(4) {
+//     [0]=>
+//     int(2)
+//     [1]=>
+//     int(3)
+//     [2]=>
+//     int(4)
+//     [3]=>
+//     int(5)
+//   }
+//   [1]=>
+//   array(4) {
+//     [0]=>
+//     int(3)
+//     [1]=>
+//     int(4)
+//     [2]=>
+//     int(5)
+//     [3]=>
+//     int(6)
+//   }
+//   [2]=>
+//   array(4) {
+//     [0]=>
+//     int(6)
+//     [1]=>
+//     int(7)
+//     [2]=>
+//     int(8)
+//     [3]=>
+//     int(9)
+//   }
+// }
+
+
+
+?>
