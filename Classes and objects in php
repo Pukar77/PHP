@@ -1,0 +1,24 @@
+<?php
+class bike{
+    //properties
+    public $name;
+  
+    
+    //method
+    function getdata($name){
+        $this->name= $name;
+    }
+    
+    function setdata(){
+        return $this->name;
+    }
+}  
+    
+   $bike1 = new bike();
+   $bike2 = new bike();
+    $bike1->getdata("Xpulse");
+    $bike2->getdata("Bullet");
+    echo $bike1->setdata();
+    echo $bike2->setdata();
+
+?>
