@@ -1,0 +1,77 @@
+//HTML
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
+    <form action="process_form.php" method="POST">
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="gender">Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="Male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female" required>
+        <label for="female">Female</label><br><br>
+
+        <label for="country">Country:</label><br>
+        <select id="country" name="country" required>
+            <option value="USA">USA</option>
+            <option value="Canada">Canada</option>
+            <option value="UK">UK</option>
+            <option value="Australia">Australia</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+//php
+
+<?php
+// Database configuration
+$servername = "localhost";
+$username = "root"; // Your database username
+$password = ""; // Your database password
+$dbname = "your_database_name"; // Your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Get the form data
+$comments = $conn->real_escape_string($_POST['comments']);
+$gender = $conn->real_escape_string($_POST['gender']);
+$country = $conn->real_escape_string($_POST['country']);
+
+// SQL query to insert data into the database
+$sql = "INSERT INTO form_data (comments, gender, country) VALUES ('$comments', '$gender', '$country')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close connection
+$conn->close();
+?>
+
+
+//database setup
+CREATE TABLE form_data (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    comments TEXT NOT NULL,
+    gender VARCHAR(10) NOT NULL,
+    country VARCHAR(50) NOT NULL
+);
