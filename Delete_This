@@ -1,0 +1,38 @@
+import string
+import re
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.utils import pad_sequences
+
+def clean_caption(caption):
+    caption = caption.lower()
+    caption = re.sub(r'[^a-z ]', '', caption)
+    caption = caption.strip()
+    return "startseq " + caption + " endseq"
+
+def load_captions(path):
+    captions = {}
+    with open(path, 'r') as f:
+        for line in f:
+            img_id, caption = line.strip().split('\t')
+
+            # FIX: remove "#0", "#1", "#2", "#3", "#4"
+            img_id = img_id.split('#')[0]
+
+            # clean caption
+            caption = clean_caption(caption)
+
+            if img_id not in captions:
+                captions[img_id] = []
+            captions[img_id].append(caption)
+
+    return captions
+
+
+def build_tokenizer(captions_dict):
+    all_captions = []
+    for caps in captions_dict.values():
+        all_captions.extend(caps)
+
+    tokenizer = Tokenizer()
+    tokenizer.fit_on_texts(all_captions)
+    return tokenizer
